@@ -1,11 +1,11 @@
 {
-    "name": "zojuhasz/pedigre",
+    "name": "zojuhasz/ugeto_pedigre",
     "type": "drupal-module",
     "description": "A short description of your module",
     "keywords": [
            "Drupal"
     ],
-    "homepage": "https://github.com/zojuhasz/pedigre",
+    "homepage": "https://github.com/zojuhasz/ugeto_pedigre",
     "license": "GPL-2.0-or-later",
     "require": {
     "composer/installers": "^2.0"
