@@ -1,0 +1,42 @@
+pedigre.pedigretable:
+  path: '/lo-form'
+  defaults:
+    _form: '\Drupal\pedigre\Form\LoForm'
+    _title: 'Ló keresése <font size=1> <br>(Kezdd el beírni a név első néhány betüjét és feljön egy lista. Ha nem jön fel automatikusan a lólista (leginkább telefonon fordul elő), üss egy SZÓKÖZ-t!)</font>'
+  requirements:
+    _permission: 'access content'
+pedigre.autocomplete:
+  path: '/pedigre-autocomplete/{field_name}/{count}'
+  defaults:
+    _controller: '\Drupal\pedigre\Controller\AutocompleteController::autocomplete'
+    _format: json
+  requirements:
+    _access: 'TRUE'
+pedigre.loker:
+  path: '/pedigre-loker/{lo}'
+  defaults:
+    _controller: '\Drupal\pedigre\Controller\PedigreController::pedigretable'
+    _format: json
+  requirements:
+    _access: 'TRUE'
+pedigre.lokerpdf:
+  path: '/pedigre-lokerpdf/{lo}'
+  defaults:
+    _controller: '\Drupal\pedigre\Controller\PedigreController::pedigretablePdf'
+    _format: json
+  requirements:
+    _access: 'TRUE'
+pedigre.download_pdf:
+  path: '/pedigre/download/{example_name}'
+  defaults:
+    _controller: '\Drupal\pedigre\Controller\PedigreController::downloadPdf'
+    _title: 'Download pdf'
+  requirements:
+    _permission: 'access content'
+pedigre.content:
+  path: '/pedigre/content'
+  defaults:
+    _controller: '\Drupal\pedigre\Controller\pedigreController::exampleContents'
+    _title: 'Pedigre'
+  requirements:
+    _permission: 'access content'    

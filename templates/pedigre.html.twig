@@ -1,0 +1,121 @@
+{#<h4>{{ title }}</h4>
+
+
+
+<ul>
+{% for key, value in items %}
+  <li>
+    {{ key }} - {{ value.nid }} - {{ value.nev }} - {{ value.ev }} - {{ value.szine }} - {{ value.neme }} - {{ value.apanev }} - {{ value.anyanev }}
+  
+  </li>
+    
+{% endfor %}
+</ul>
+#}
+
+{#<a href='http://195.228.135.95/php/uloforma.php?id={{ items[1]['nlkft_iloid'] }}' title='Fut&aacute;sok versenyekben1' target='_new'><img src='/themes/ugetomarine/futicon.jpg' border='0' alt='Fut&aacute;sok'></a>  
+#}
+
+{% if items[999]['999'] == 'pdf' %}
+<div class='pedigre'>
+<font size='4'><a href='/lo-form/'><img src='/sites/default/files/ujker.gif' border='0'></a></font></br><br>
+<table>
+       
+          {% if items[1]['elozo'] is not null %}
+          <tr><td style="border: 1px solid;" colspan='3'><b><font size='5'> {{ items[1]['nev'] }}</font></b> &nbsp; <font size='3'> {{ items[1]['ev'] }}, {{ items[1]['orszag'] }}<font size='2'> (e.{{ items[1]['elozo'] }})</font>, {{ items[1]['szine'] }}{{ items[1]['neme'] }},</font> &nbsp; <b><font size='3'>{{ items[1]['rekord'] }} - {{ items[1]['penz'] }} Ft. </font></b><font size='2'> &nbsp;{{ items[1]['nevel'] }}</font></td></tr>
+          {% else %}
+          <tr><td colspan='3'><b><font size='5'> {{ items[1]['nev'] }}</font></b> &nbsp; <font size='3'> {{ items[1]['ev'] }}, {{ items[1]['orszag'] }}, {{ items[1]['szine'] }}{{ items[1]['neme'] }},</font> &nbsp; <b><font size='3'>{{ items[1]['rekord'] }} - {{ items[1]['penz'] }} Ft. </font></b><font size='2'> &nbsp;{{ items[1]['nevel'] }}</font></td></tr>
+          {% endif %}
+          <tr><td  colspan='4'>
+          {% for i in range(100, 140) %}
+          {% if items[i]['lonid'] is not null %}
+          <font size='2'><b> {{ items[i]['nev'] }}</b>, {{ items[i]['ev'] }}, {{ items[i]['orszag'] }}, {{ items[i]['szine'] }}{{ items[i]['neme'] }}, {{ items[i]['rekord'] }}, {{ items[i]['ap_v_any'] }} </font> &nbsp;   
+          {% endif %}
+          {% endfor %}          
+          </td></tr>
+          
+          
+        
+</table>
+</div>
+{% endif %} 
+
+
+{% if items[999]['999'] == 'web' %}
+
+<html>
+<title>TiTle</title>
+<body>            
+<div class='pedigre'>
+  
+<font size='4'><a href='/lo-form/'><img src='/sites/default/files/ujker.gif' border='0'></a></font></br><br>
+<table style="width: 90%;">
+         
+            {% if items[1]['elozo'] is not null %}
+            <tr><td colspan='3'><a href='/pedigre-loker/{{ items[1]['lonid'] }}'><b><font size='5'> {{ items[1]['nev'] }}</font></b> &nbsp; <font size='3'> {{ items[1]['ev'] }}, {{ items[1]['orszag'] }}<font size='2'> (e.{{ items[1]['elozo'] }})</font>, {{ items[1]['szine'] }}{{ items[1]['neme'] }},</font> &nbsp; <b><font size='3'>{{ items[1]['rekord'] }} - {{ items[1]['penz'] }} Ft. </font></b><font size='2'> &nbsp;{{ items[1]['nevel'] }}</a>
+            {% else %}
+            <tr><td colspan='3'><a href='/pedigre-loker/{{ items[1]['lonid'] }}'><b><font size='5'> {{ items[1]['nev'] }}</font></b> &nbsp; <font size='3'> {{ items[1]['ev'] }}, {{ items[1]['orszag'] }}, {{ items[1]['szine'] }}{{ items[1]['neme'] }},</font> &nbsp; <b><font size='3'>{{ items[1]['rekord'] }} - {{ items[1]['penz'] }} Ft. </font></b><font size='2'> &nbsp;{{ items[1]['nevel'] }}</a>
+            {% endif %}  
+            {% if items[1]['nlkft_iloid'] is not null %}
+            </td><td>
+            {#<a href='http://195.228.135.95/php/uloforma.php?id={{ items[1]['nlkft_iloid'] }}' title='Fuut&aacute;sok versenyekben (NLKFT adatbázis)' target='_new'><img src='/sites/default/files/nlkft.gif' border='0' alt='Fut&aacute;sok' width='50'></a>#}
+            <a href='https://mla.kincsempark.hu/race_career_participant/trotting/{{ items[1]['nlkft_iloid'] }}' title='Fut&aacute;sok versenyekben (NLKFT adatbázis)' target='_new'><img src='/sites/default/files/nlkft.gif' border='0' alt='Fut&aacute;sok' width='50'></a>
+            {% else %}
+            </td><td>
+            <img src='/sites/default/files/nlkftno.gif' border='0' title='NLKFT versenyadatok nem &aacute;llnak rendelkez&eacute;sre' width='50'>
+            {% endif %}  
+            </td></tr>
+            <tr><td  colspan='4'>
+            {% for i in range(100, 140) %}
+            {% if items[i]['lonid'] is not null %}
+            <a href='/pedigre-loker/{{ items[i]['lonid'] }}'><font size='2'><b> {{ items[i]['nev'] }}</b>, {{ items[i]['ev'] }}, {{ items[i]['orszag'] }}, {{ items[i]['szine'] }}{{ items[i]['neme'] }}, {{ items[i]['rekord'] }}, {{ items[i]['ap_v_any'] }} </font></a> &nbsp;   
+            {% endif %}
+            {% endfor %}          
+            </td></tr>
+            <tr><td rowspan='8'><br><br><br><br><a href='/pedigre-loker/{{ items[3]['lonid'] }}'><b><font size='4'> {{ items[3]['nev'] }} </font></b><br> {{ items[3]['ev'] }}, {{ items[3]['orszag'] }} , {{ items[3]['szine'] }}{{ items[3]['neme'] }} , {{ items[3]['rekord'] }} </a></td><td rowspan='4'><br><br<br><br><a href='/pedigre-loker/{{ items[7]['lonid'] }}'><b> {{ items[7]['nev'] }} </b>, {{ items[7]['ev'] }}, {{ items[7]['orszag'] }}, {{ items[7]['szine'] }}{{ items[7]['neme'] }}, {{ items[7]['rekord'] }}</b></a></td><td rowspan='2'><br><b>{{ items[15]['nev'] }}</b></td><td><img src='/sites/default/files/spacer.jpg' width='1' height='11'><b>{{ items[31]['nev'] }}</b></td></tr>
+            <tr><td><img src='/sites/default/files/spacer.jpg' width='1' height='11'><b>{{ items[33]['nev'] }}</b></td></tr>
+            <tr><td rowspan='2'><br><b>{{ items[17]['nev'] }}</td><td><img src='/sites/default/files/spacer.jpg' width='1' height='11'><b>{{ items[35]['nev'] }}</b></td></tr>
+            <tr><td><img src='/sites/default/files/spacer.jpg' width='1' height='11'><b>{{ items[37]['nev'] }}</td></tr>   
+            <tr><td rowspan='4'><br><br<br><br><a href='/pedigre-loker/{{ items[9]['lonid'] }}'><b> {{ items[9]['nev'] }} </b>, {{ items[9]['ev'] }}, {{ items[9]['orszag'] }}, {{ items[9]['szine'] }}{{ items[9]['neme'] }}, {{ items[9]['rekord'] }}</b></a></td><td rowspan='2'><b><br>{{ items[19]['nev'] }}</b></td><td><b>{{ items[39]['nev'] }}</b></td></tr>
+            <tr><td><img src='/sites/default/files/spacer.jpg' width='1' height='11'><b>{{ items[41]['nev'] }}</td></tr>
+            <tr><td rowspan='2'><b><br>{{ items[21]['nev'] }}</b></td><td><img src='/sites/default/files/spacer.jpg' width='1' height='11'><b>{{ items[43]['nev'] }}</b></td></tr>
+            <tr><td><img src='/sites/default/files/spacer.jpg' width='1' height='11'><b>{{ items[45]['nev'] }}</td></tr>  
+            <tr><td rowspan='8'><br><br><br><br><a href='/pedigre-loker/{{ items[5]['lonid'] }}'><b><font size='4'> {{ items[5]['nev'] }}</font></b><br> {{ items[5]['ev'] }}, {{ items[5]['orszag'] }} , {{ items[5]['szine'] }}{{ items[5]['neme'] }} , {{ items[5]['rekord'] }} </a></td><td rowspan='4'><br><br<br><br><a href='/pedigre-loker/{{ items[11]['lonid'] }}'><b> {{ items[11]['nev'] }} </b>, {{ items[11]['ev'] }}, {{ items[11]['orszag'] }}, {{ items[11]['szine'] }}{{ items[11]['neme'] }}, {{ items[11]['rekord'] }}</b></a></td><td rowspan='2'><b><br>{{ items[23]['nev'] }}</b></td><td><img src='/sites/default/files/spacer.jpg' width='1' height='11'><b>{{ items[47]['nev'] }}</b></td></tr>
+            <tr><td><img src='/sites/default/files/spacer.jpg' width='1' height='11'><b>{{ items[49]['nev'] }}</b></td></tr>
+            <tr><td rowspan='2'><b><br>{{ items[25]['nev'] }}</b></td><td><img src='/sites/default/files/spacer.jpg' width='1' height='11'><b>{{ items[51]['nev'] }}</b></td></tr>
+            <tr><td><img src='/sites/default/files/spacer.jpg' width='1' height='11'><b>{{ items[53]['nev'] }}</b></td></tr>   
+            <tr><td rowspan='4'><br><br<br><br><a href='/pedigre-loker/{{ items[13]['lonid'] }}'><b> {{ items[13]['nev'] }} </b>, {{ items[13]['ev'] }}, {{ items[13]['orszag'] }}, {{ items[13]['szine'] }}{{ items[13]['neme'] }}, {{ items[13]['rekord'] }}</b></a></td><td rowspan='2'><br><b>{{ items[27]['nev'] }}</b></td><td><img src='/sites/default/files/spacer.jpg' width='1' height='11'><b>{{ items[55]['nev'] }}</b></td></tr>
+            <tr><td><img src='/sites/default/files/spacer.jpg' width='1' height='11'><b>{{ items[57]['nev'] }}</b></td></tr>
+            <tr><td rowspan='2'><br><b>{{ items[29]['nev'] }}</b></td><td><img src='/sites/default/files/spacer.jpg' width='1' height='11'><b>{{ items[59]['nev'] }}</b></td></tr>
+            <tr><td><img src='/sites/default/files/spacer.jpg' width='1' height='11'><b>{{ items[61]['nev'] }}</b></td></tr>
+            <tr><td>{% for i in range(200, 240) %}
+            {% if items[i]['lonid'] is not null %}
+            <a href='/pedigre-loker/{{ items[i]['lonid'] }}'><font size='1'><b> {{ items[i]['nev'] }}</b>, {{ items[i]['ev'] }}, {{ items[i]['orszag'] }}, {{ items[i]['szine'] }}{{ items[i]['neme'] }}, {{ items[i]['rekord'] }}, {{ items[i]['apanev'] }} </font></a><br>
+            {% endif %}
+            {% endfor %}</td>
+            <td>{% for i in range(300, 340) %}
+            {% if items[i]['lonid'] is not null %}
+            <a href='/pedigre-loker/{{ items[i]['lonid'] }}'><font size='1'><b> {{ items[i]['nev'] }}</b>, {{ items[i]['ev'] }}, {{ items[i]['orszag'] }}, {{ items[i]['szine'] }}{{ items[i]['neme'] }}, {{ items[i]['rekord'] }}, {{ items[i]['apanev'] }} </font></a><br>
+            {% endif %}
+            {% endfor %}</td>
+            <td>{% for i in range(400, 440) %}
+            {% if items[i]['lonid'] is not null %}
+            <a href='/pedigre-loker/{{ items[i]['lonid'] }}'><font size='1'><b> {{ items[i]['nev'] }}</b>, {{ items[i]['ev'] }}, {{ items[i]['orszag'] }}, {{ items[i]['szine'] }}{{ items[i]['neme'] }}, {{ items[i]['rekord'] }}, {{ items[i]['apanev'] }} </font></a><br>
+            {% endif %}
+            {% endfor %}</td>
+            <td>{% for i in range(500, 540) %}
+            {% if items[i]['lonid'] is not null %}
+            <a href='/pedigre-loker/{{ items[i]['lonid'] }}'><font size='1'><b> {{ items[i]['nev'] }}</b>, {{ items[i]['ev'] }}</font></a><br>
+            {% endif %}
+            {% endfor %}</td></tr>
+       
+</table>
+<font size='3'><a href='/pedigre-lokerpdf/{{ items[1]['lonid'] }}'><img src='/sites/default/files/pdf.gif' title='Megjelenítés PDF-ben' border='0' width='50'></a></font>
+
+<font size='2'><br><br>A fenti pedigré táblában az apróbetűs részben az ivadékok listája látható. Mének esetében az 5 legjobb időteljesítménnyel rendelkező ivadék, kancák esetében valamennyi ivadék látható. Mének esetében csak a hazai születésű ivadékok látszanak.</font><font size='1'><a href='/lo-form/'> >> ÚJ KERESÉS INDÍTÁSA << </a></font><br>
+
+
+</div>
+</body>
+</html>
+{% endif %} 

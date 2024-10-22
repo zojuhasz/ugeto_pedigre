@@ -1,0 +1,9 @@
+name: Pedigre
+description: pedigre
+type: module
+core_version_requirement: ^10 || ^11
+version: '10.x-4.3'
+project: 'pedigre'
+datestamp: 1575735787
+
+
