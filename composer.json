@@ -8,7 +8,8 @@
     "homepage": "https://github.com/zojuhasz/ugeto_pedigre",
     "license": "GPL-2.0-or-later",
     "require": {
-    "composer/installers": "^2.0"
+    "composer/installers": "^2.0",
+        "drupal/core": "^11.0"
     },
     "extra": {
     "installer-name": "pedigre"

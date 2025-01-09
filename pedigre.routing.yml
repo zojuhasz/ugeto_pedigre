@@ -39,4 +39,11 @@ pedigre.content:
     _controller: '\Drupal\pedigre\Controller\pedigreController::exampleContents'
     _title: 'Pedigre'
   requirements:
-    _permission: 'access content'    
+    _permission: 'access content'
+pedigre.csikojelpdf:
+  path: '/pedigre-csikojelpdf/{sid}'
+  defaults:
+    _controller: '\Drupal\pedigre\Controller\PedigreController::csikojelPdf'
+    _format: json
+  requirements:
+    _access: 'TRUE'    

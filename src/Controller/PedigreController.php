@@ -9,6 +9,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Drupal\file\Entity\File;
+use Drupal\webform\Entity\WebformSubmission;
 use TCPDF;
 
 /**
@@ -511,7 +512,127 @@ $tbl.='<font size="5"><br><br>'.$keszult.' </font><img src="/sites/default/files
     }
    }
   
-  
+  public function csikojelPdf($sid, Request $request)
+    {
+        
+    // adatok lekérése a submissionból
+    $submission = WebformSubmission::load($sid);
+    // Ellenőrizzük, hogy létezik-e a submission.
+    if ($submission) {
+    // A submission adatai.
+      $data = $submission->getData();
+ 
+      //print_r($data);
+      //anyakanca_neve
+      //csiko_ivara
+      //csiko_neve
+      //csiko_szine
+      //fedezomen
+      //szul_datum
+      //tenyeszto_cime
+      //tenyeszto_neve
+      //tulajdonos_cime
+      //tulajdonos_emailcime
+      //tulajdonos_neve
+      //tulajdonos_telefonszama
+     
+    }else{
+      print "<br>Nincs ".$sid." submission!"; 
+      return;  
+    }
+     
+    $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);       
+    
+    $pdf->setPrintHeader(false);
+    $pdf->AddPage();
+
+    $pdf->SetFont('dejavusans', '', 10, '', true);
+    
+    $pdf->Ln(50);
+    $str=$data['fedezomen'];
+    $pdf->SetFont('dejavusans', 'b', 9, '', true);
+    $pdf->Cell(73, 0, '', 0, 0, 'L', 0);
+    $pdf->Cell(50, 0, $str, 0, 0, 'L', 0);
+    
+    $pdf->Ln(10);
+    $str=$data['anyakanca_neve'];
+    $pdf->SetFont('dejavusans', 'b', 9, '', true);
+    $pdf->Cell(118, 0, '', 0, 0, 'L', 0);
+    $pdf->Cell(50, 0, $str, 0, 0, 'L', 0);
+    
+    
+    $pdf->Ln(30);
+    $str=$data['tulajdonos_neve'];
+    $pdf->SetFont('dejavusans', 'b', 8, '', true);
+    $pdf->Cell(21, 0, '', 0, 0, 'L', 0);
+    $pdf->Cell(50, 0, $str, 0, 0, 'L', 0);
+    
+    $pdf->Ln(11);
+    $str=$data['tulajdonos_cime'];
+    $pdf->SetFont('dejavusans', 'b', 8, '', true);
+    $pdf->Cell(58, 0, '', 0, 0, 'L', 0);
+    $pdf->Cell(50, 0, $str, 0, 0, 'L', 0);
+    
+    $pdf->Ln(14);
+    $str=$data['tenyeszto_neve'];
+    $pdf->SetFont('dejavusans', 'b', 8, '', true);
+    $pdf->Cell(21, 0, '', 0, 0, 'L', 0);
+    $pdf->Cell(50, 0, $str, 0, 0, 'L', 0);
+    
+    $pdf->Ln(10);
+    $str=$data['tenyeszto_cime'];
+    $pdf->SetFont('dejavusans', 'b', 8, '', true);
+    $pdf->Cell(58, 0, '', 0, 0, 'L', 0);
+    $pdf->Cell(50, 0, $str, 0, 0, 'L', 0);
+    
+    $pdf->Ln(15);
+    $str=$data['csiko_neve'];
+    $pdf->SetFont('dejavusans', 'b', 8, '', true);
+    $pdf->Cell(21, 0, '', 0, 0, 'L', 0);
+    $pdf->Cell(50, 0, $str, 0, 0, 'L', 0);
+    
+    $str='U G';
+    $pdf->SetFont('dejavusans', 'b', 9, '', true);
+    $pdf->Cell(55, 0, '', 0, 0, 'L', 0);
+    $pdf->Cell(50, 0, $str, 0, 0, 'L', 0);
+    
+    $pdf->Ln(9);
+    $str=$data['csiko_szine'];
+    $pdf->SetFont('dejavusans', 'b', 8, '', true);
+    $pdf->Cell(91, 0, '', 0, 0, 'L', 0);
+    $pdf->Cell(50, 0, $str, 0, 0, 'L', 0);
+    
+    $str=$data['csiko_ivara'];
+    $pdf->SetFont('dejavusans', 'b', 8, '', true);
+    $pdf->Cell(14, 0, '', 0, 0, 'L', 0);
+    $pdf->Cell(54, 0, $str, 0, 0, 'L', 0);
+    
+    $pdf->Ln(10);
+    $strd=$data['szul_datum'];
+    
+    
+  //                  2                     0                     2                     4                    -                     1                       1                     -                                                           
+  $str=substr($strd,0,1).' '.substr($strd,1,1).' '.substr($strd,2,1).' '.substr($strd,3,1).'    '.substr($strd,5,1).' '.substr($strd,6,1).'    '.substr($strd,8,1).' '.substr($strd,9,1);
+   
+    $pdf->SetFont('dejavusans', 'b', 12, '', true);
+    $pdf->Cell(38, 0, '', 0, 0, 'L', 0);
+    $pdf->Cell(50, 0, $str, 0, 0, 'L', 0);
+    
+    $str='H U N 1 U G';
+    $pdf->SetFont('dejavusans', 'b', 11, '', true);
+    $pdf->Cell(20, 0, '', 0, 0, 'L', 0);
+    $pdf->Cell(50, 0, $str, 0, 0, 'L', 0);
+    
+    
+
+   // $pdf->writeHTML($tbl, true, false, true, false, '');
+   
+    $pdf->Output('jelentes'.'.pdf', 'I');
+
+
+    return;
+    }       
+ 
   
   
   
